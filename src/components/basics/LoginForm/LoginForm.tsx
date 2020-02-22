@@ -2,11 +2,11 @@ import React, { useState } from 'react'
 import './LoginForm.css'
 import { IonInput, IonButton } from '@ionic/react'
 
-const loginUser = (userName?: string, password?: string) => {
-  console.log(userName, password)
+export interface AppLoginForm {
+  onSave?: Function
 }
 
-const LoginForm: React.FC = () => {
+const LoginForm: React.FC<AppLoginForm> = props => {
   const [userName, setUserName] = useState(undefined)
   const [userPassword, setPassword] = useState(undefined)
   return (
@@ -25,7 +25,11 @@ const LoginForm: React.FC = () => {
           onIonChange={(event: any) => setPassword(event.target.value)}
           className='form_input'
         />
-        <IonButton onClick={() => loginUser(userName, userPassword)}>
+        <IonButton
+          onClick={() =>
+            props.onSave ? props.onSave(userName, userPassword) : () => {}
+          }
+        >
           Login
         </IonButton>
         <IonButton color='secondary' routerLink='/register'>

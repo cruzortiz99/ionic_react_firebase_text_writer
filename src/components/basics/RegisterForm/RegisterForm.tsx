@@ -1,19 +1,29 @@
-import { IonButton, IonInput } from '@ionic/react'
+import { IonButton, IonInput, IonNote, IonText } from '@ionic/react'
 import React, { useState } from 'react'
 import './RegisterForm.css'
 
-const registerUser = (
-  userName?: string,
-  password?: string,
-  confirmedPassword?: string
-) => {
-  console.log(userName, password, confirmedPassword)
+export interface AppRegisterForm {
+  onSave?: Function
 }
 
-const RegisterForm = () => {
+const RegisterForm: React.FC<AppRegisterForm> = props => {
   const [userName, setUserName] = useState(undefined)
   const [userPassword, setPassword] = useState(undefined)
   const [confirmedPassword, setConfirmedPassword] = useState(undefined)
+  const [passwordError, setPasswordError] = useState(false)
+
+  const onPasswordConfirmed = (
+    useName: string | undefined,
+    userPassword: string | undefined,
+    confirmedPassword: string | undefined
+  ) => {
+    if (userPassword === confirmedPassword) {
+      setPasswordError(false)
+      return props.onSave ? props.onSave(userName, userPassword) : null
+    }
+    setPasswordError(true)
+  }
+
   return (
     <section className='login-content'>
       <div className='register_form'>
@@ -37,9 +47,18 @@ const RegisterForm = () => {
           onIonChange={(event: any) => setConfirmedPassword(event.target.value)}
           className='form_input'
         />
+        {passwordError ? (
+          <IonText className='form_input' color='danger'>
+            {userName
+              ? userPassword
+                ? 'Password must match the confirmation'
+                : 'Must type a valid password'
+              : 'Must type a valid user name'}
+          </IonText>
+        ) : null}
         <IonButton
           onClick={() =>
-            registerUser(userName, userPassword, confirmedPassword)
+            onPasswordConfirmed(userName, userPassword, confirmedPassword)
           }
           className='center_button'
         >
