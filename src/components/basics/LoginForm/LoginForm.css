@@ -1,0 +1,17 @@
+.login-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login_form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: 1fr;
+  gap: 10px;
+  max-width: 300px;
+  width: 20%;
+  min-width: 200px;
+}
+.login_form > .form_input {
+  grid-column: 1/3;
+}

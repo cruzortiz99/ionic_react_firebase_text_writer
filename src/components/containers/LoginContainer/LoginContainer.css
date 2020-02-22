@@ -1,0 +1,29 @@
+.login_container_banner {
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(33, 0, 64);
+}
+.login_container_logo {
+  height: 100%;
+  max-width: 350px;
+  width: 30%;
+  min-width: 250px;
+}
+.register_form {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  display: grid;
+  grid-auto-rows: 1fr;
+  max-width: 300px;
+  width: 20%;
+  min-width: 200px;
+}
+.register_form > .form_input {
+  grid-column: 1/4;
+}
+.register_form > .center_button {
+  grid-column: 2/3;
+}
