@@ -17,7 +17,7 @@ const RegisterForm: React.FC<AppRegisterForm> = props => {
     userPassword: string | undefined,
     confirmedPassword: string | undefined
   ) => {
-    if (userPassword === confirmedPassword) {
+    if (userName && userPassword && userPassword === confirmedPassword) {
       setPasswordError(false)
       return props.onSave ? props.onSave(userName, userPassword) : null
     }

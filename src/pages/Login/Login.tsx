@@ -3,18 +3,14 @@ import React from 'react'
 import LoginForm from '../../components/basics/LoginForm/LoginForm'
 import LoginContainer from '../../components/containers/LoginContainer/LoginContainer'
 import './Login.css'
-const registerUser = (
-  userName?: string,
-  password?: string,
-  confirmedPassword?: string
-) => {
-  console.log(userName, password, confirmedPassword)
+const printUser = (...args: string[]) => {
+  console.log(...args)
 }
 
 const AppLogin: React.FC = () => {
   return (
     <LoginContainer banner={banner}>
-      <LoginForm></LoginForm>
+      <LoginForm onSave={printUser}></LoginForm>
     </LoginContainer>
   )
 }
