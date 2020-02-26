@@ -1,17 +1,21 @@
-.login-content {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.login_form {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-auto-rows: 1fr;
+.login-form-content {
+  background-color: rgba(178, 96, 255, 0.51);
+  padding-bottom: 10px;
+  border-radius: 10px;
   gap: 10px;
-  max-width: 300px;
-  width: 20%;
-  min-width: 200px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(3, 1fr);
 }
-.login_form > .form_input {
-  grid-column: 1/3;
+.login-form-content > .form_input {
+  grid-column: 2/-2;
+}
+.login-form-button {
+  grid-row: 3/4;
+}
+.login-form-login-button {
+  grid-column: 2/3;
+}
+.login-form-signin-button {
+  grid-column: 4/5;
 }

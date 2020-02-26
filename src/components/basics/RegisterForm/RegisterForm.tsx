@@ -25,49 +25,54 @@ const RegisterForm: React.FC<AppRegisterForm> = props => {
   }
 
   return (
-    <section className='login-content'>
-      <div className='register_form'>
-        <IonInput
-          placeholder='User name or email'
-          value={userName}
-          onIonChange={(event: any) => setUserName(event.target.value)}
-          className='form_input'
-        />
-        <IonInput
-          placeholder='Password'
-          value={userPassword}
-          type='password'
-          onIonChange={(event: any) => setPassword(event.target.value)}
-          className='form_input'
-        />
-        <IonInput
-          placeholder='Confirme Password'
-          value={confirmedPassword}
-          type='password'
-          onIonChange={(event: any) => setConfirmedPassword(event.target.value)}
-          className='form_input'
-        />
-        {passwordError ? (
-          <IonText className='form_input' color='danger'>
-            {userName
-              ? userPassword
-                ? 'Password must match the confirmation'
-                : 'Must type a valid password'
-              : 'Must type a valid user name'}
-          </IonText>
-        ) : null}
-        <IonButton
-          onClick={() =>
-            onPasswordConfirmed(userName, userPassword, confirmedPassword)
-          }
-          className='center_button'
-        >
-          Sign-in
-        </IonButton>
-        <IonButton routerLink='/login' color='secondary'>
-          Back
-        </IonButton>
-      </div>
+    <section className='register-form-content'>
+      <IonInput
+        placeholder='User name or email'
+        value={userName}
+        onIonChange={(event: any) => setUserName(event.target.value)}
+        className='form_input'
+        color='light'
+      />
+      <IonInput
+        placeholder='Password'
+        value={userPassword}
+        type='password'
+        onIonChange={(event: any) => setPassword(event.target.value)}
+        className='form_input'
+        color='light'
+      />
+      <IonInput
+        placeholder='Confirme Password'
+        value={confirmedPassword}
+        type='password'
+        onIonChange={(event: any) => setConfirmedPassword(event.target.value)}
+        className='form_input'
+        color='light'
+      />
+      {passwordError ? (
+        <IonText className='form_input' color='danger'>
+          {userName
+            ? userPassword
+              ? 'Password must match the confirmation'
+              : 'Must type a valid password'
+            : 'Must type a valid user name'}
+        </IonText>
+      ) : null}
+      <IonButton
+        onClick={() =>
+          onPasswordConfirmed(userName, userPassword, confirmedPassword)
+        }
+        className='register-form-button register-form-signin-button'
+      >
+        Sign-in
+      </IonButton>
+      <IonButton
+        className='register-form-button register-form-back-button'
+        routerLink='/login'
+        color='secondary'
+      >
+        Back
+      </IonButton>
     </section>
   )
 }

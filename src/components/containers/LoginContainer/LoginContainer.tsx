@@ -9,7 +9,7 @@ export interface AppLoginContainer {
 
 const LoginContainer: React.FC<AppLoginContainer> = props => {
   return (
-    <IonPage>
+    <IonPage className='login_container_page'>
       <section className='login_container_banner'>
         <IonIcon
           icon={props.banner}
@@ -17,7 +17,7 @@ const LoginContainer: React.FC<AppLoginContainer> = props => {
           className='login_container_logo'
         />
       </section>
-      <IonContent>{props.children}</IonContent>
+      <section className='login_container_slot'>{props.children}</section>
     </IonPage>
   )
 }

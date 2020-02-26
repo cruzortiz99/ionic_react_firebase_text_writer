@@ -1,16 +1,21 @@
-.register_form {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+.register-form-content {
+  background-color: rgba(178, 96, 255, 0.51);
+  border-radius: 10px;
   gap: 10px;
+  padding-bottom: 10px;
   display: grid;
-  grid-auto-rows: 1fr;
-  max-width: 300px;
-  width: 20%;
-  min-width: 200px;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(4, 1fr);
 }
-.register_form > .form_input {
-  grid-column: 1/4;
+.register-form-content > .form_input {
+  grid-column: 2/5;
 }
-.register_form > .center_button {
+.register-form-button {
+  grid-row: 4/5;
+}
+.register-form-signin-button {
   grid-column: 2/3;
+}
+.register-form-back-button {
+  grid-column: 4/5;
 }
