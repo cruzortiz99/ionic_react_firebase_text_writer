@@ -1,4 +1,4 @@
-import { IonContent, IonIcon, IonPage } from '@ionic/react'
+import { IonIcon, IonPage } from '@ionic/react'
 import React from 'react'
 import './LoginContainer.css'
 

@@ -1,4 +1,4 @@
-import { IonButton, IonInput, IonNote, IonText } from '@ionic/react'
+import { IonButton, IonInput, IonText } from '@ionic/react'
 import React, { useState } from 'react'
 import './RegisterForm.css'
 
