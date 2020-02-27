@@ -27,7 +27,7 @@ const RegisterForm: React.FC<AppRegisterForm> = props => {
   return (
     <section className='register-form-content'>
       <IonInput
-        placeholder='User name or email'
+        placeholder='User email'
         value={userName}
         onIonChange={(event: any) => setUserName(event.target.value)}
         className='form_input'

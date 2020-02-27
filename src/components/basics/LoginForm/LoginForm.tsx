@@ -1,6 +1,6 @@
+import { IonButton, IonInput } from '@ionic/react'
 import React, { useState } from 'react'
 import './LoginForm.css'
-import { IonInput, IonButton } from '@ionic/react'
 
 export interface AppLoginForm {
   onSave?: Function
@@ -12,7 +12,7 @@ const LoginForm: React.FC<AppLoginForm> = props => {
   return (
     <section className='login-form-content'>
       <IonInput
-        placeholder='User name or email'
+        placeholder='User email'
         value={userName}
         onIonChange={(event: any) => setUserName(event.target.value)}
         className='form_input'
