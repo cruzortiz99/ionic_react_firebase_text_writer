@@ -16,7 +16,7 @@ const login = async (
 }
 
 const AppLogin: React.FC = () => {
-  const [loginError, setLoginError] = useState(true)
+  const [loginError, setLoginError] = useState(false)
   return (
     <LoginContainer banner={banner}>
       <LoginForm

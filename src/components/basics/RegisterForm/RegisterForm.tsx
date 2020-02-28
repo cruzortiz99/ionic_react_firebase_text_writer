@@ -1,4 +1,4 @@
-import { IonButton, IonInput, IonText } from '@ionic/react'
+import { IonButton, IonInput } from '@ionic/react'
 import React, { useState } from 'react'
 import './RegisterForm.css'
 
@@ -6,23 +6,29 @@ export interface AppRegisterForm {
   onSave?: Function
 }
 
-const RegisterForm: React.FC<AppRegisterForm> = props => {
+const onPasswordConfirmed = (
+  userName: string | undefined,
+  userPassword: string | undefined,
+  confirmedPassword: string | undefined,
+  onSave: Function
+) => {
+  let error = ''
+  if (!userName || !userPassword || userPassword !== confirmedPassword) {
+    if (!userName) {
+      error = 'Must use a valid email'
+    } else if (!userPassword) {
+      error = 'Password must not be empty'
+    } else {
+      error = 'Password must match the confirmation'
+    }
+  }
+  return onSave(error, { userName, userPassword })
+}
+
+const RegisterForm: React.FC<AppRegisterForm> = ({ onSave }) => {
   const [userName, setUserName] = useState(undefined)
   const [userPassword, setPassword] = useState(undefined)
   const [confirmedPassword, setConfirmedPassword] = useState(undefined)
-  const [passwordError, setPasswordError] = useState(false)
-
-  const onPasswordConfirmed = (
-    useName: string | undefined,
-    userPassword: string | undefined,
-    confirmedPassword: string | undefined
-  ) => {
-    if (userName && userPassword && userPassword === confirmedPassword) {
-      setPasswordError(false)
-      return props.onSave ? props.onSave(userName, userPassword) : null
-    }
-    setPasswordError(true)
-  }
 
   return (
     <section className='register-form-content'>
@@ -49,18 +55,16 @@ const RegisterForm: React.FC<AppRegisterForm> = props => {
         className='form_input'
         color='light'
       />
-      {passwordError ? (
-        <IonText className='form_input' color='danger'>
-          {userName
-            ? userPassword
-              ? 'Password must match the confirmation'
-              : 'Must type a valid password'
-            : 'Must type a valid user name'}
-        </IonText>
-      ) : null}
       <IonButton
         onClick={() =>
-          onPasswordConfirmed(userName, userPassword, confirmedPassword)
+          onSave
+            ? onPasswordConfirmed(
+                userName,
+                userPassword,
+                confirmedPassword,
+                onSave
+              )
+            : null
         }
         className='register-form-button register-form-signin-button'
       >
