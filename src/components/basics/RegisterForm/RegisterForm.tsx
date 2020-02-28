@@ -3,14 +3,20 @@ import React, { useState } from 'react'
 import './RegisterForm.css'
 
 export interface AppRegisterForm {
-  onSave?: Function
+  onSave?: (
+    error: string,
+    data: { userName: string | undefined; userPassword: string | undefined }
+  ) => void | any
 }
 
 const onPasswordConfirmed = (
   userName: string | undefined,
   userPassword: string | undefined,
   confirmedPassword: string | undefined,
-  onSave: Function
+  onSave: (
+    error: string,
+    data: { userName: string | undefined; userPassword: string | undefined }
+  ) => void | any
 ) => {
   let error = ''
   if (!userName || !userPassword || userPassword !== confirmedPassword) {
