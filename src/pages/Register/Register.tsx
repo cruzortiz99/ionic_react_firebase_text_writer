@@ -1,39 +1,19 @@
-import { IonToast } from '@ionic/react'
-import { close, person as banner } from 'ionicons/icons'
-import React, { useState } from 'react'
+import { person as banner } from 'ionicons/icons'
+import React from 'react'
 import RegisterForm from '../../components/basics/RegisterForm/RegisterForm'
 import LoginContainer from '../../components/containers/LoginContainer/LoginContainer'
+import { toast } from '../../components/basics/utils/AppToast'
 
-const onSaveHandler = (
-  error: string,
-  data: any,
-  setRegisterError: Function
-) => {
-  console.log(error, data)
-  setRegisterError(error)
+const onSaveHandler = (error: string, data: any) => {
+  toast(error, undefined, 'danger', undefined)
 }
 
 const AppRegisterPage = () => {
-  const [registerError, setRegisterError] = useState('')
   return (
     <LoginContainer banner={banner}>
       <RegisterForm
-        onSave={(error: string, data: any) =>
-          onSaveHandler(error, data, setRegisterError)
-        }
+        onSave={(error: string, data: any) => onSaveHandler(error, data)}
       ></RegisterForm>
-      <IonToast
-        isOpen={!!registerError}
-        message={registerError}
-        color='danger'
-        buttons={[
-          {
-            icon: close,
-            text: 'Dismiss',
-            handler: () => setRegisterError('')
-          }
-        ]}
-      ></IonToast>
     </LoginContainer>
   )
 }
