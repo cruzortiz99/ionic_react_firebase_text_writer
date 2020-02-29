@@ -2,7 +2,7 @@ import { close } from 'ionicons/icons'
 
 export const toast = async (
   message: string,
-  duration: number = 5000,
+  duration: number = 3000,
   color: string,
   handler: (() => boolean | void | Promise<boolean>) | undefined
 ) => {

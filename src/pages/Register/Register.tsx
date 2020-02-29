@@ -5,6 +5,7 @@ import { registerUser } from '../../api/api'
 import RegisterForm from '../../components/basics/RegisterForm/RegisterForm'
 import { toast } from '../../components/basics/utils/AppToast'
 import LoginContainer from '../../components/containers/LoginContainer/LoginContainer'
+import AppLoader from '../../components/basics/AppLoader/AppLoader'
 
 const onSaveHandler = async (
   error: string,
@@ -25,7 +26,7 @@ const AppRegisterPage = () => {
   const [isLoading, setIsLoading] = useState(false)
   return (
     <LoginContainer banner={banner}>
-      <IonLoading isOpen={isLoading} message='Please wait'></IonLoading>
+      <AppLoader isOpen={isLoading} />
       <RegisterForm
         onSave={async (error, data) => {
           setIsLoading(true)
