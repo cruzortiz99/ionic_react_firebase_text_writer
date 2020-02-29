@@ -1,11 +1,10 @@
-import { IonLoading } from '@ionic/react'
 import { person as banner } from 'ionicons/icons'
 import React, { useState } from 'react'
-import { registerUser } from '../../api/api'
-import RegisterForm from '../../components/basics/RegisterForm/RegisterForm'
+import { registerUser } from '../../api'
+import AppLoader from '../../components/basics/AppLoader'
+import RegisterForm from '../../components/basics/RegisterForm'
 import { toast } from '../../components/basics/utils/AppToast'
-import LoginContainer from '../../components/containers/LoginContainer/LoginContainer'
-import AppLoader from '../../components/basics/AppLoader/AppLoader'
+import LoginContainer from '../../components/containers/LoginContainer'
 
 const onSaveHandler = async (
   error: string,

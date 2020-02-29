@@ -1,9 +1,9 @@
 import { analytics as banner } from 'ionicons/icons'
 import React, { useState } from 'react'
-import { loginUser } from '../../api/api'
-import AppLoader from '../../components/basics/AppLoader/AppLoader'
-import LoginForm from '../../components/basics/LoginForm/LoginForm'
-import LoginContainer from '../../components/containers/LoginContainer/LoginContainer'
+import { loginUser } from '../../api'
+import AppLoader from '../../components/basics/AppLoader'
+import LoginForm from '../../components/basics/LoginForm'
+import LoginContainer from '../../components/containers/LoginContainer'
 import './Login.css'
 
 const login = async (email: string, password: string) => {
