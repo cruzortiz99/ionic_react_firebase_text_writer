@@ -19,19 +19,23 @@ import Login from './pages/Login/Login'
 import AppRegisterPage from './pages/Register/Register'
 /* Theme variables */
 import './theme/variables.css'
+import { Provider } from 'react-redux'
+import { store } from './store/account'
 
 const App: React.FC = () => (
-  <IonApp>
-    <IonReactRouter>
-      <IonRouterOutlet animated={false}>
-        <Switch>
-          <Route path='/login' component={Login} exact={true} />
-          <Route path='/register' component={AppRegisterPage} exact={true} />
-          <Route path='/' render={() => <Redirect to='/login' />} />
-        </Switch>
-      </IonRouterOutlet>
-    </IonReactRouter>
-  </IonApp>
+  <Provider store={store}>
+    <IonApp>
+      <IonReactRouter>
+        <IonRouterOutlet animated={false}>
+          <Switch>
+            <Route path='/login' component={Login} exact={true} />
+            <Route path='/register' component={AppRegisterPage} exact={true} />
+            <Route path='/' render={() => <Redirect to='/login' />} />
+          </Switch>
+        </IonRouterOutlet>
+      </IonReactRouter>
+    </IonApp>
+  </Provider>
 )
 
 export default App
