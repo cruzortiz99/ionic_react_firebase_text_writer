@@ -1,8 +1,16 @@
 import ActionsNames from '../actions/names.d'
 import * as userReducers from './reducers'
 
+export interface AppGeneralState {
+  user: string
+}
+
+const defaultState: AppGeneralState = {
+  user: ''
+}
+
 export const rootReducer = (
-  state = [],
+  state = defaultState,
   {
     type,
     payload

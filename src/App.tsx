@@ -13,33 +13,33 @@ import '@ionic/react/css/text-alignment.css'
 import '@ionic/react/css/text-transformation.css'
 import '@ionic/react/css/typography.css'
 import React, { useEffect, useState } from 'react'
-import { Provider } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { getCurrentUser } from './api'
 import AppRoutingSystem from './components/basics/AppRoutingSystem'
-import { store } from './store/account'
+import { setUserState } from './store/account/actions'
 /* Theme variables */
 import './theme/variables.css'
 
 const App: React.FC = () => {
   const [busy, setBusy] = useState(true)
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    getCurrentUser().then(user => {
+    getCurrentUser().then((user: any) => {
       if (user) {
+        dispatch(setUserState(user.email))
         window.history.replaceState({}, '', '/dashboard')
       } else {
         window.history.replaceState({}, '', '/login')
       }
       setBusy(false)
     })
-  }, [])
+  }, [dispatch])
 
   return (
-    <Provider store={store}>
-      <IonApp>
-        <AppRoutingSystem busy={busy}></AppRoutingSystem>
-      </IonApp>
-    </Provider>
+    <IonApp>
+      <AppRoutingSystem busy={busy}></AppRoutingSystem>
+    </IonApp>
   )
 }
 

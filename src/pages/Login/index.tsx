@@ -5,13 +5,23 @@ import AppLoader from '../../components/basics/AppLoader'
 import LoginForm from '../../components/basics/LoginForm'
 import LoginContainer from '../../components/containers/LoginContainer'
 import './Login.css'
-
-const login = async (email: string, password: string) => {
-  return await loginUser(email, password)
-}
+import { useDispatch } from 'react-redux'
+import { setUserState } from '../../store/account/actions'
+import { useHistory } from 'react-router'
 
 const AppLogin: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false)
+  const dispatch = useDispatch()
+  const history = useHistory()
+
+  const login = async (email: string, password: string) => {
+    const response: any = await loginUser(email, password)
+    if (response) {
+      dispatch(setUserState(response.user.email))
+      history.replace('/dashboard')
+    }
+  }
+
   return (
     <LoginContainer banner={banner}>
       <AppLoader isOpen={isLoading} />

@@ -3,8 +3,10 @@ import { toast } from '../components/basics/utils/AppToast'
 
 export const loginUser = async (email: string, password: string) => {
   try {
-    await firebaseApp.auth().signInWithEmailAndPassword(email, password)
-    return true
+    const response = await firebaseApp
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+    return response
   } catch (error) {
     console.error(error)
     return toast('Wrong user or password', undefined, 'danger', undefined)
@@ -28,4 +30,8 @@ export const getCurrentUser = () => {
       unsubscribe()
     })
   })
+}
+
+export const logOut = () => {
+  return firebaseApp.auth().signOut()
 }
