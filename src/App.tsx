@@ -1,5 +1,4 @@
-import { IonApp, IonRouterOutlet } from '@ionic/react'
-import { IonReactRouter } from '@ionic/react-router'
+import { IonApp } from '@ionic/react'
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css'
 import '@ionic/react/css/display.css'
@@ -13,29 +12,35 @@ import '@ionic/react/css/structure.css'
 import '@ionic/react/css/text-alignment.css'
 import '@ionic/react/css/text-transformation.css'
 import '@ionic/react/css/typography.css'
-import React from 'react'
-import { Route, Redirect, Switch } from 'react-router-dom'
-import Login from './pages/Login'
-import AppRegisterPage from './pages/Register'
+import React, { useEffect, useState } from 'react'
+import { Provider } from 'react-redux'
+import { getCurrentUser } from './api'
+import AppRoutingSystem from './components/basics/AppRoutingSystem'
+import { store } from './store/account'
 /* Theme variables */
 import './theme/variables.css'
-import { Provider } from 'react-redux'
-import { store } from './store/account'
 
-const App: React.FC = () => (
-  <Provider store={store}>
-    <IonApp>
-      <IonReactRouter>
-        <IonRouterOutlet animated={false}>
-          <Switch>
-            <Route path='/login' component={Login} exact={true} />
-            <Route path='/register' component={AppRegisterPage} exact={true} />
-            <Route path='/' render={() => <Redirect to='/login' />} />
-          </Switch>
-        </IonRouterOutlet>
-      </IonReactRouter>
-    </IonApp>
-  </Provider>
-)
+const App: React.FC = () => {
+  const [busy, setBusy] = useState(true)
+
+  useEffect(() => {
+    getCurrentUser().then(user => {
+      if (user) {
+        window.history.replaceState({}, '', '/dashboard')
+      } else {
+        window.history.replaceState({}, '', '/login')
+      }
+      setBusy(false)
+    })
+  }, [])
+
+  return (
+    <Provider store={store}>
+      <IonApp>
+        <AppRoutingSystem busy={busy}></AppRoutingSystem>
+      </IonApp>
+    </Provider>
+  )
+}
 
 export default App

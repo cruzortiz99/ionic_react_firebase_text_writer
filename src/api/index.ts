@@ -20,3 +20,12 @@ export const registerUser = async (username: string, password: string) => {
     return toast(error.message, undefined, 'danger', undefined)
   }
 }
+
+export const getCurrentUser = () => {
+  return new Promise((resolve, reject) => {
+    const unsubscribe = firebaseApp.auth().onAuthStateChanged(user => {
+      resolve(user)
+      unsubscribe()
+    })
+  })
+}
