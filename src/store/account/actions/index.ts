@@ -1,4 +1,4 @@
-import ActionsName from './names'
+import ActionsName from './names.d'
 
 export const setUserState = (payload?: any) => {
   return {

@@ -1,3 +1,5 @@
+import ActionsNames from '../actions/names.d'
+
 export const rootReducer = (
   state = [],
   {
@@ -9,7 +11,7 @@ export const rootReducer = (
   }
 ): any => {
   switch (type) {
-    case 'SET_USER_STATE':
+    case ActionsNames.SET_USER_STATE:
       return {
         ...state,
         userData: payload
